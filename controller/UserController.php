@@ -68,6 +68,14 @@ if ($action === "register") {
     User::create($username, $name, $email, $password);
     $_SESSION["user"] = User::findByUsername($username);
 
+    $to = $email;
+    $subject = "Bienvenido al foro Value Investing";
+    $message = "Hola $username,\n\nGracias por registrarte en nuestro foro.\n¡Esperamos que disfrutes compartiendo ideas de inversión!";
+    $headers = "From: foro@valueinvesting.local";
+
+    mail($to, $subject, $message, $headers);
+    file_put_contents("../logs/mail_log.txt", "EMAIL A: $to\nASUNTO: $subject\nMENSAJE:\n$message\n\n", FILE_APPEND);
+
     header("Location: /view/home.php");
     exit();
 }

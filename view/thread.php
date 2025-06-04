@@ -29,6 +29,7 @@ $thread = $stmt->fetch(PDO::FETCH_ASSOC);
 $posts = Post::getByThread($threadID);
 
 include("header.php");
+include("message.php");
 ?>
 
 <h2 class="mb-4"><?= htmlspecialchars($thread["name"]) ?></h2>
